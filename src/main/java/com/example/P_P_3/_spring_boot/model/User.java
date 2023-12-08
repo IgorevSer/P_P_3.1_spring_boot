@@ -1,7 +1,6 @@
 package com.example.P_P_3._spring_boot.model;
 
 
-
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -10,30 +9,33 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
+    @Column(name = "name")
     private String name;
 
-    private String surname;
-    private Integer age;
-    public User() {
+    @Column(name = "lastName")
+    private String lastName;
 
+    @Column(name = "age")
+    private int age;
+
+    public User() {
     }
 
-    public User(String name, String surname, Integer age) {
+    public User(String name, String lastName, int age) {
         this.name = name;
-        this.surname = surname;
+        this.lastName = lastName;
         this.age = age;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,19 +47,19 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -66,12 +68,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(age, user.age);
+        return age == user.age && Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, age);
+        return Objects.hash(id, name, lastName, age);
     }
 
     @Override
@@ -79,7 +81,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 '}';
     }
